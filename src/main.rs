@@ -20,6 +20,8 @@
 //
 //
 
+// stopped tutorial at 18:28
+
 fn main(){
 
 }

@@ -1,6 +1,6 @@
 -- Your SQL goes here
 
-CREATE TABLE people (
+CREATE TABLE People (
     "Name" TEXT NOT NULL,
     "ID" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 )
