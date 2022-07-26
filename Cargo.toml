@@ -1,0 +1,14 @@
+[package]
+name = "CRUST"
+version = "0.1.0"
+edition = "2021"
+authors = ["Ukeje Chukwuemeriwo"]
+description = "A simple CRUD RESTful API built with Rocket and Diesel"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+diesel = {version="1.4.8", features=["sqlite"]}
+diesel_cli = "1.4.1"
+dotenv = "0.15.0"
+rocket ="0.4.11"

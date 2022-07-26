@@ -1,0 +1,6 @@
+-- Your SQL goes here
+
+CREATE TABLE people (
+    "Name" TEXT NOT NULL,
+    "ID" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
+)
