@@ -4,3 +4,4 @@
 target
 testdb.db
 diesel.toml
+help_shell.sh
