@@ -10,19 +10,26 @@ pub struct BioData {
     pub age: i32,
 }
 
+#[get("/hello")]
+fn hello() -> Json<&'static str> {
+    Json("{'status' : 'successful',
+'message`: 'Your first Rocket app is live'}")
+}
 
 
-#[post("/todo", data = "<task>")]
-fn create_bio(task: Json<BioData>) {
 
-
+#[post("/todo", format = "json", data = "<bio>")]
+fn create_bio(bio: Json<BioData>) -> String {
+    format!("{:?}",bio)
 
 }
 
 
 fn main() {
     rocket::ignite()
-        .mount("/api", routes![create_bio])
+        .mount("/api", routes![create_bio, hello])
         .launch();
 }
+
+//
 
