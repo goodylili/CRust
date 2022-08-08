@@ -1,52 +1,28 @@
 #![feature(decl_macro)]
 use rocket::*;
-use rocket::response::content::Json;
+use serde::Deserialize;
+use rocket_contrib::json::Json;
 
-
-#[derive(FromForm, Debug)]
-struct Person {
-    first_name: String,
-    last_name: String,
-    phone: i32,
-}
-
-#[get("api/get", "data = <name>")]
-fn get_person() {
-    let a_person = Person{
-        first_name: String::from("Jeffery"),
-        last_name: String::from("PenSteak"),
-        phone: 193349180
-    };
-    Template::render("")
-
-}
-
-#[get("api/get", "data = <name>")]
-fn post_person() {
-    let a_person = Person{
-        first_name: String::from("Jeffery"),
-        last_name: String::from("PenSteak"),
-        phone: 193349180
-    };
-    Template::render("")
-
+//Configs to make struct serializable and debug able
+#[derive(Deserialize, Debug)]
+pub struct BioData {
+    pub name: String,
+    pub age: i32,
 }
 
 
+
+#[post("/todo", data = "<task>")]
+fn create_bio(task: Json<BioData>) {
+
+
+
+}
 
 
 fn main() {
     rocket::ignite()
-        .mount("/api", routes![hello])
+        .mount("/api", routes![create_bio])
         .launch();
 }
 
-#[catch(404)]
-fn not_found(req: &Request) -> String {
-    print!("{}", req);
-    format!("Oh no! We couldn't find the requested path '{}'", req.uri())
-}
-
-// git add .
-// git commit -m changes
-// git push origin main
