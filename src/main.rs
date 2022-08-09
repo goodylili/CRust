@@ -1,6 +1,7 @@
 #![feature(decl_macro)]
 
 use rocket::*;
+use rocket::http::RawStr;
 use rocket_contrib::json::Json;
 use serde::Deserialize;
 use serde::Serialize;
@@ -13,7 +14,7 @@ struct BioData {
 }
 
 fn vec_db() -> Vec<BioData> {
-    let vec_store: Vec<BioData> = Vec::new();
+    let mut vec_store: Vec<BioData> = Vec::new();
     return vec_store;
 }
 
@@ -25,21 +26,40 @@ fn create_bio(bio: Json<BioData>) -> Json<BioData> {
         username: bio.username.to_string(),
     };
     vec_db().push(person);
-
     bio
 }
 
+#[get("/person/<name>")]
+fn get_bio(name: &RawStr) {
+    for structs in &vec_db() {
+        if structs.username == name.to_string() {
 
-#[get("/hello")]
-fn hello() -> Json<&'static str> {
-    Json("{'status' : 'successful',
-'message`: 'Your first Rocket app is live'}")
+        }
+    }
+
+}
+
+#[put("/person/<age>")]
+fn update_bio(age: i32) ->  {
+
+
 }
 
 
+#[delete("/person/<age>")]
+fn delete_bio(age: i32 ) ->  {
+
+
+}
+
+
+
+
 fn main() {
+    let mut vec_store: Vec<BioData> = Vec::new();
+
     rocket::ignite()
-        .mount("/api", routes![create_bio, hello])
+        .mount("/api", routes![create_bio, get_bio])
         .launch();
 }
 
