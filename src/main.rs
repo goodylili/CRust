@@ -9,9 +9,9 @@ use rocket_contrib::json::Json;
 
 //Configs to make struct serializable and debug able
 #[derive(Deserialize, Serialize)]
-pub struct BioData {
-    pub name: String,
-    pub age: i32,
+struct BioData {
+    age: i32,
+    username: String,
 }
 
 
@@ -19,9 +19,10 @@ pub struct BioData {
 #[post("/todo", format = "json", data = "<bio>")]
 fn create_bio(bio: Json<BioData>) -> Json<BioData> {
     let person = BioData{
-        name: bio.name,
-        age: bio.age
+        age: bio.age,
+        username: bio.username.to_string(),
     };
+
     bio
 
 }
